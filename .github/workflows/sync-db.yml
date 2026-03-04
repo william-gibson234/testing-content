@@ -142,10 +142,15 @@ jobs:
               if (!parsed) { console.log(`[SKIP] ${file}: missing or invalid frontmatter`); continue; }
 
               const { fm, body } = parsed;
-              const { title, type, subtype, uid, keywords, linked } = fm;
+              const { title, type, subtype, keywords, linked } = fm;
 
-              if (!uid || !title || !type || !subtype) {
-                console.log(`[SKIP] ${file}: frontmatter missing required fields (title/type/subtype/uid)`);
+              // uid is derived from the filename — it is the authoritative source and is
+              // never stored in frontmatter. This prevents users from corrupting the
+              // uid/filename invariant by editing the frontmatter directly.
+              const uid = path.basename(file, '.md');
+
+              if (!title || !type || !subtype) {
+                console.log(`[SKIP] ${file}: frontmatter missing required fields (title/type/subtype)`);
                 continue;
               }
 
