@@ -7,5 +7,6 @@ keywords:
   - is
   - a
   - keyword
+  - "5"
 ---
 some content
