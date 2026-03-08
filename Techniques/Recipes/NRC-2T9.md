@@ -4,5 +4,6 @@ type: technique
 subtype: recipe
 keywords:
   - "1"
+  - "2"
 ---
 content
