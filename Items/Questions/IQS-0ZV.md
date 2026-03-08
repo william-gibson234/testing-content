@@ -2,7 +2,7 @@
 title: item-question-test
 type: item
 subtype: question
-keywords:
-  - 
+linked:
+  - TSL-E8T (thread)
 ---
 quest
