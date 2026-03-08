@@ -4,8 +4,8 @@ type: technique
 subtype: recipe
 keywords:
   - recipe
+  - another
 linked:
-  - TSL-0H9 (thread)
   - TDV-H1W (thread)
 ---
 testing content
