@@ -1,5 +1,5 @@
 ---
-title: test
+title: testing
 type: technique
 subtype: trick
 keywords:
