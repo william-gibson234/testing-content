@@ -6,7 +6,7 @@ keywords:
   - is
   - keyword
 linked:
-  - ICN-7R5 (item)
+  - ITH-2S4 (item)
 ---
 some content
 more content
