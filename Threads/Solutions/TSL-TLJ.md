@@ -4,3 +4,4 @@ type: thread
 subtype: solution
 ---
 test
+another line, different content
