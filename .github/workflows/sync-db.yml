@@ -203,9 +203,21 @@ jobs:
                 const linkedId = await resolveUID(entry.uid, entry.type);
                 if (!linkedId) { console.warn(`[WARN] ${file}: could not resolve linked uid ${entry.uid}`); continue; }
                 const joinRow = { [route.cols[0]]: data.id, [route.cols[1]]: linkedId };
-                const { error: je } = await supabase.from(route.table).insert(joinRow);
-                if (je) console.warn(`[WARN] ${route.table}: ${je.message}`);
-                else    console.log(`  linked ${entry.uid} in ${route.table}`);
+                // check for an existing row before inserting — prevents duplicate join rows
+                // when both sides of a relationship declare the link (e.g. A links to B and
+                // B links to A both map to the same row in the join table)
+                const { count } = await supabase
+                  .from(route.table)
+                  .select('*', { count: 'exact', head: true })
+                  .eq(route.cols[0], joinRow[route.cols[0]])
+                  .eq(route.cols[1], joinRow[route.cols[1]]);
+                if (count && count > 0) {
+                  console.log(`  [SKIP] ${route.table}: join row already exists for ${entry.uid}`);
+                } else {
+                  const { error: je } = await supabase.from(route.table).insert(joinRow);
+                  if (je) console.warn(`[WARN] ${route.table}: ${je.message}`);
+                  else    console.log(`  linked ${entry.uid} in ${route.table}`);
+                }
               }
             }
 
