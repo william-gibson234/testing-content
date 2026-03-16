@@ -182,6 +182,17 @@ jobs:
                 }
               }
 
+              // Threads may have an optional parent_item FK — a single item this thread belongs to.
+              // Resolve the parent_item UID from frontmatter to the items.id row ID.
+              if (type === 'thread' && fm.parent_item) {
+                const parentItemId = await resolveUID(fm.parent_item, 'item');
+                if (parentItemId) {
+                  row.parent_item_id = parentItemId;
+                } else {
+                  console.warn(`[WARN] ${file}: could not resolve parent_item uid ${fm.parent_item}`);
+                }
+              }
+
               const { data, error } = await supabase
                 .from(table)
                 .upsert(row, { onConflict: 'uid' })
