@@ -85,6 +85,13 @@ jobs:
               return FOLDER_TO_TABLE[filePath.split('/')[0]] ?? null;
             }
 
+            // Derives the canonical type string from the first character of a UID.
+            // Mirrors UID_TYPE_CODES in constants.ts.
+            function typeFromUID(uid) {
+              const map = { I: 'item', T: 'thread', N: 'technique', R: 'reflection' };
+              return map[uid?.[0]] ?? null;
+            }
+
             // Splits a markdown file into parsed frontmatter object and body string.
             // Returns null if the file does not start with a valid YAML frontmatter block.
             function parseMarkdown(raw) {
@@ -164,10 +171,9 @@ jobs:
 
               // Reflections store their linked item as a direct FK (item_id) rather
               // than through a join table. Resolve the linked item UID to a row ID.
-              // linked entries are stored as "uid (type)" strings in frontmatter.
+              // linked entries are stored as plain UID strings in frontmatter.
               if (type === 'reflection' && linked?.length > 0) {
-                const m0 = /^(\S+)\s+\((.+)\)$/.exec(linked[0]);
-                const itemUID = m0 ? m0[1] : null;
+                const itemUID = linked[0];
                 const itemId = itemUID ? await resolveUID(itemUID, 'item') : null;
                 if (itemId) {
                   row.item_id = itemId;
@@ -192,12 +198,12 @@ jobs:
               }
 
               // Insert join table rows for each linked entry (non-reflections only).
-              // linked entries are stored as "uid (type)" strings in frontmatter.
+              // linked entries are stored as plain UID strings; type is derived from the UID prefix.
               for (const rawEntry of (linked ?? [])) {
                 if (type === 'reflection') continue;
-                const me = /^(\S+)\s+\((.+)\)$/.exec(rawEntry);
-                if (!me) { console.warn(`[WARN] ${file}: could not parse linked entry "${rawEntry}"`); continue; }
-                const entry = { uid: me[1], type: me[2] };
+                const entryType = typeFromUID(rawEntry);
+                if (!entryType) { console.warn(`[WARN] ${file}: could not derive type from linked entry "${rawEntry}"`); continue; }
+                const entry = { uid: rawEntry, type: entryType };
                 const route = JOIN_ROUTES[`${type}:${entry.type}`];
                 if (!route) { console.warn(`[WARN] ${file}: no join route for ${type}:${entry.type}`); continue; }
                 const linkedId = await resolveUID(entry.uid, entry.type);
