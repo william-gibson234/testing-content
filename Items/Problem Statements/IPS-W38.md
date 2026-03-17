@@ -1,5 +1,5 @@
 ---
-title: another item
+title: another item, diff title
 type: item
 subtype: problemstatement
 keywords:
