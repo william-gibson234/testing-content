@@ -5,7 +5,5 @@ subtype: problemstatement
 keywords:
   - a
   - keyword
-linked:
-  - TDV-F23
 ---
 testing
