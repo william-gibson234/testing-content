@@ -184,12 +184,18 @@ jobs:
 
               // Threads may have an optional parent_item FK — a single item this thread belongs to.
               // Resolve the parent_item UID from frontmatter to the items.id row ID.
-              if (type === 'thread' && fm.parent_item) {
-                const parentItemId = await resolveUID(fm.parent_item, 'item');
-                if (parentItemId) {
-                  row.parent_item_id = parentItemId;
-                } else {
-                  console.warn(`[WARN] ${file}: could not resolve parent_item uid ${fm.parent_item}`);
+              // parent_item_id is always included in the upsert payload (null when absent) so that
+              // clearing parent_item from frontmatter propagates to the DB — omitting the column
+              // from the payload would leave the old value in place on conflict update.
+              if (type === 'thread') {
+                row.parent_item_id = null;
+                if (fm.parent_item) {
+                  const parentItemId = await resolveUID(fm.parent_item, 'item');
+                  if (parentItemId) {
+                    row.parent_item_id = parentItemId;
+                  } else {
+                    console.warn(`[WARN] ${file}: could not resolve parent_item uid ${fm.parent_item}`);
+                  }
                 }
               }
 
