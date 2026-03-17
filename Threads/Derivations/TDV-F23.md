@@ -2,6 +2,10 @@
 title: this is a thread
 type: thread
 subtype: derivation
-parent_item: IFT-Y95
+linked:
+  - IFT-Y95
+  - NRC-PQQ
+  - IPS-DCR
+parent_item: IPS-DCR
 ---
 thread content
