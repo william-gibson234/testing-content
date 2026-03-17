@@ -6,6 +6,6 @@ linked:
   - IFT-Y95
   - NRC-PQQ
   - IPS-DCR
-parent_item: IPS-DCR
+parent_item: IFT-Y95
 ---
 differing thread content
