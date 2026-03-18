@@ -1,6 +1,8 @@
 [T]
 T0000,solution-a-different-short-title
 T0001,solution-short-title
+T0002,solution-a-short-title
+T0003,solution-a-short-title
 [N]
 N0000,recipe-another-short-title
 N0001,trick-short-title-diff
@@ -10,3 +12,4 @@ I0000,fact-example-short-title
 *I0001,definition-testing-title
 *I0002,definition-short-title
 I0003,theorem-diff-short-title
+I0004,concept-a-diff-short-title
