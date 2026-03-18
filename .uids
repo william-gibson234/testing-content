@@ -1,4 +1,5 @@
 I0000,theorem-divisibility-of-integers
-I0001,theorem-gcd-proving-bezouts
+I0001,OBSOLETE
 T0000,proof-bezout-theorem
 N0000,recipe-usage-of-eulers-algorithm
+T0001,proof-gcd-proving-bezouts
