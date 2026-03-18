@@ -48,36 +48,66 @@ jobs:
 
             // Maps the top-level Content subfolder name to its Supabase table.
             const FOLDER_TO_TABLE = {
-              Items:       'items',
-              Threads:     'threads',
-              Techniques:  'techniques',
-              Reflections: 'reflections',
+              "Threads": "threads",
+              "Techniques": "techniques",
+              "Reflections": "reflections",
+              "Items": "items"
             };
 
             // Maps Supabase table name back to the canonical type string.
             const TABLE_TO_TYPE = {
-              items:       'item',
-              threads:     'thread',
-              techniques:  'technique',
-              reflections: 'reflection',
+              "threads": "thread",
+              "techniques": "technique",
+              "reflections": "reflection",
+              "items": "item"
             };
 
             // Join tables to clear before re-inserting links on update.
             // Ensures that links removed from frontmatter are reflected in the DB.
             const JOIN_CLEANUP = {
-              thread:     [{ table: 'items_threads_join',      col: 'thread_id'    },
-                           { table: 'threads_techniques_join', col: 'thread_id'    }],
-              item:       [{ table: 'items_threads_join',      col: 'item_id'      }],
-              technique:  [{ table: 'threads_techniques_join', col: 'technique_id' }],
-              reflection: [],
+              "thread": [
+                {
+                  "table": "items_threads_join",
+                  "col": "thread_id"
+                },
+                {
+                  "table": "threads_techniques_join",
+                  "col": "thread_id"
+                }
+              ],
+              "reflection": []
             };
 
             // Routes a type:linkedType pair to the correct join table and column order.
             const JOIN_ROUTES = {
-              'thread:item':      { table: 'items_threads_join',      cols: ['thread_id',    'item_id'      ] },
-              'thread:technique': { table: 'threads_techniques_join', cols: ['thread_id',    'technique_id' ] },
-              'item:thread':      { table: 'items_threads_join',      cols: ['item_id',      'thread_id'    ] },
-              'technique:thread': { table: 'threads_techniques_join', cols: ['technique_id', 'thread_id'    ] },
+              "thread:item": {
+                "table": "items_threads_join",
+                "cols": [
+                  "thread_id",
+                  "item_id"
+                ]
+              },
+              "item:thread": {
+                "table": "items_threads_join",
+                "cols": [
+                  "item_id",
+                  "thread_id"
+                ]
+              },
+              "thread:technique": {
+                "table": "threads_techniques_join",
+                "cols": [
+                  "thread_id",
+                  "technique_id"
+                ]
+              },
+              "technique:thread": {
+                "table": "threads_techniques_join",
+                "cols": [
+                  "technique_id",
+                  "thread_id"
+                ]
+              }
             };
 
             // Extracts the top-level folder from a repo-relative path and returns its table.
@@ -88,7 +118,12 @@ jobs:
             // Derives the canonical type string from the first character of a UID.
             // Mirrors UID_TYPE_CODES in constants.ts.
             function typeFromUID(uid) {
-              const map = { I: 'item', T: 'thread', N: 'technique', R: 'reflection' };
+              const map = {
+                "T": "thread",
+                "N": "technique",
+                "R": "reflection",
+                "I": "item"
+              };
               return map[uid?.[0]] ?? null;
             }
 
@@ -149,21 +184,22 @@ jobs:
               if (!parsed) { console.log(`[SKIP] ${file}: missing or invalid frontmatter`); continue; }
 
               const { fm, body } = parsed;
-              const { title, type, subtype, keywords, linked } = fm;
+              const { long_title, short_title, type, subtype, keywords, linked } = fm;
 
               // uid is derived from the filename — it is the authoritative source and is
               // never stored in frontmatter. This prevents users from corrupting the
               // uid/filename invariant by editing the frontmatter directly.
               const uid = path.basename(file, '.md');
 
-              if (!title || !type || !subtype) {
-                console.log(`[SKIP] ${file}: frontmatter missing required fields (title/type/subtype)`);
+              if (!long_title || !type || !subtype) {
+                console.log(`[SKIP] ${file}: frontmatter missing required fields (long_title/type/subtype)`);
                 continue;
               }
 
               const row = {
                 uid,
-                title,
+                long_title,
+                short_title: short_title ?? null,
                 subtype,
                 content:  body,
                 keywords: (keywords && keywords.length > 0) ? keywords : null,
