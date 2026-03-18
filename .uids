@@ -1,3 +1,4 @@
 I0000,theorem-divisibility-of-integers
 I0001,theorem-gcd-proving-bezouts
 T0000,proof-bezout-theorem
+N0000,recipe-usage-of-eulers-algorithm
