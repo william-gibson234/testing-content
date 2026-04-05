@@ -1,8 +1,9 @@
 [T]
 [N]
-N0000,trick-short-title
+*N0000,trick-short-title
 N0001,trick-a-short-titles
 [R]
 [I]
 *I0000,formula-short-title
 I0001,formula-diff-short-title
+I0002,formula-diff-diff-short-title
