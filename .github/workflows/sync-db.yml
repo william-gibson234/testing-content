@@ -26,6 +26,9 @@ jobs:
       - name: Install dependencies
         run: npm install @supabase/supabase-js js-yaml
 
+      - name: Temporary test delay (remove after testing)
+        run: sleep 120
+
       - name: Sync to Supabase
         env:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
