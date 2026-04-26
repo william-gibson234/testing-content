@@ -14,7 +14,7 @@ N0005,recipe-shorter-title
 *N0006,trick-a-short-title
 N0007,trick-a-unique-short-title
 N0008,trick-a-short-title
-N0009,recipe-a-relaly-shorter-title
+*N0009,recipe-a-relaly-shorter-title
 [R]
 R0000,note-a-shorter-title
 R0001,note-a-diff-shorter-title
@@ -26,3 +26,4 @@ I0003,fact-a-short-titles
 I0004,concept-short-titl
 *I0005,concept-a-parent-item
 I0006,concept-unique-short-title
+I0007,concept-a-parent-item
