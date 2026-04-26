@@ -2,7 +2,7 @@
 *T0000,derivation-short-title
 T0001,derivation-a-shorter-title
 T0002,computation-a-short-title
-T0003,example-a-short-title
+*T0003,example-a-short-title
 T0004,solution-a-short-testing-title
 [N]
 N0000,recipe-a-much-shorter-title
