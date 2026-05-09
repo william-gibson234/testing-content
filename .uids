@@ -2,6 +2,7 @@
 T0000,example-coin-flipping-and-or
 T0001,example-coin-flipping-sample-space
 T0002,solution-coin-flipping-solution
+T0003,solution-solution,-sample-space/additivity
 [N]
 N0000,trick-additivity-over-finitely-many-events
 [R]
