@@ -3,6 +3,7 @@ T0000,example-coin-flipping-and-or
 T0001,example-coin-flipping-sample-space
 T0002,solution-coin-flipping-solution
 [N]
+N0000,trick-additivity-over-finitely-many-events
 [R]
 R0000,remark-outcome-versus-observation
 R0001,note-notation-a-and-b
