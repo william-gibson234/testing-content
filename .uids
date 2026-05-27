@@ -5,7 +5,7 @@ T0002,solution-coin-flipping-solution
 T0003,solution-solution,-sample-space/additivity
 T0004,solution-solution-inclusion-exclusion-complements
 T0005,example-thread-1-short-title
-T0006,example-thread-2-short-title
+*T0006,example-thread-2-short-title
 [N]
 N0000,trick-additivity-over-finitely-many-events
 N0001,recipe-technique-1-short-title
@@ -39,3 +39,4 @@ I000K,fact-short-title-item-1
 I000L,concept-item-2-short-title
 I000M,concept-item-3-short-title
 I000N,theorem-item-3-short-title
+I000P,theorem-short-title-item-1
