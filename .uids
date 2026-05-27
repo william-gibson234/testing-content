@@ -4,7 +4,7 @@ T0001,example-coin-flipping-sample-space
 T0002,solution-coin-flipping-solution
 T0003,solution-solution,-sample-space/additivity
 T0004,solution-solution-inclusion-exclusion-complements
-T0005,example-thread-1-short-title
+*T0005,example-thread-1-short-title
 *T0006,example-thread-2-short-title
 [N]
 N0000,trick-additivity-over-finitely-many-events
