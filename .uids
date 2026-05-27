@@ -11,7 +11,7 @@ N0000,trick-additivity-over-finitely-many-events
 R0000,remark-outcome-versus-observation
 R0001,note-notation-a-and-b
 R0002,note-probability-function-notation
-R0003,remark-reflection-1-short-title
+*R0003,remark-reflection-1-short-title
 [I]
 I0000,concept-events-and-outcomes
 I0001,concept-notation-for-events
@@ -35,3 +35,4 @@ I000I,problemstatement-sample-space,-additivity-problem
 I000J,problemstatement-inclusion-exclusion-complements-problem
 I000K,fact-short-title-item-1
 I000L,concept-item-2-short-title
+I000M,concept-item-3-short-title
