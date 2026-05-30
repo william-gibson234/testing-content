@@ -6,6 +6,7 @@ T0003,solution-solution,-sample-space/additivity
 T0004,solution-solution-inclusion-exclusion-complements
 *T0005,example-thread-1-short-title
 *T0006,example-thread-2-short-title
+T0007,computation-same-parent-item
 [N]
 N0000,trick-additivity-over-finitely-many-events
 *N0001,recipe-technique-1-short-title
