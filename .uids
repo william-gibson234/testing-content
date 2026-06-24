@@ -11,6 +11,7 @@ T0008,example-minimal-backprop
 T0009,solution-callout-card-test
 T000A,derivation-a-short-title
 T000B,solution-admonition-testing-short-title
+T000C,derivation-a-short-title-title
 [N]
 N0000,trick-additivity-over-finitely-many-events
 *N0001,recipe-technique-1-short-title
