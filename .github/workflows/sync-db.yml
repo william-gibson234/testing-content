@@ -48,7 +48,7 @@ jobs:
 
             // Maps the top-level Content subfolder name to its Supabase table.
             const FOLDER_TO_TABLE = {
-              "Threads": "threads",
+              "Strands": "strands",
               "Techniques": "techniques",
               "Reflections": "reflections",
               "Items": "items"
@@ -56,7 +56,7 @@ jobs:
 
             // Maps Supabase table name back to the canonical type string.
             const TABLE_TO_TYPE = {
-              "threads": "thread",
+              "strands": "strand",
               "techniques": "technique",
               "reflections": "reflection",
               "items": "item"
@@ -65,25 +65,25 @@ jobs:
             // Join tables to clear before re-inserting links on update.
             // Ensures that links removed from frontmatter are reflected in the DB.
             const JOIN_CLEANUP = {
-              "thread": [
+              "strand": [
                 {
-                  "table": "items_threads_join",
-                  "col": "thread_id"
+                  "table": "items_strands_join",
+                  "col": "strand_id"
                 },
                 {
-                  "table": "threads_techniques_join",
-                  "col": "thread_id"
+                  "table": "strands_techniques_join",
+                  "col": "strand_id"
                 }
               ],
               "item": [
                 {
-                  "table": "items_threads_join",
+                  "table": "items_strands_join",
                   "col": "item_id"
                 }
               ],
               "technique": [
                 {
-                  "table": "threads_techniques_join",
+                  "table": "strands_techniques_join",
                   "col": "technique_id"
                 }
               ],
@@ -92,32 +92,32 @@ jobs:
 
             // Routes a type:linkedType pair to the correct join table and column order.
             const JOIN_ROUTES = {
-              "thread:item": {
-                "table": "items_threads_join",
+              "strand:item": {
+                "table": "items_strands_join",
                 "cols": [
-                  "thread_id",
+                  "strand_id",
                   "item_id"
                 ]
               },
-              "item:thread": {
-                "table": "items_threads_join",
+              "item:strand": {
+                "table": "items_strands_join",
                 "cols": [
                   "item_id",
-                  "thread_id"
+                  "strand_id"
                 ]
               },
-              "thread:technique": {
-                "table": "threads_techniques_join",
+              "strand:technique": {
+                "table": "strands_techniques_join",
                 "cols": [
-                  "thread_id",
+                  "strand_id",
                   "technique_id"
                 ]
               },
-              "technique:thread": {
-                "table": "threads_techniques_join",
+              "technique:strand": {
+                "table": "strands_techniques_join",
                 "cols": [
                   "technique_id",
-                  "thread_id"
+                  "strand_id"
                 ]
               }
             };
@@ -131,7 +131,7 @@ jobs:
             // Mirrors UID_TYPE_CODES in constants.ts.
             function typeFromUID(uid) {
               const map = {
-                "T": "thread",
+                "S": "strand",
                 "N": "technique",
                 "R": "reflection",
                 "I": "item"
@@ -157,7 +157,7 @@ jobs:
             // Looks up the Supabase row ID for a given UID in the given type's table.
             // Returns null if not found or on error.
             async function resolveUID(uid, type) {
-              const tableMap = { item: 'items', thread: 'threads', technique: 'techniques', reflection: 'reflections' };
+              const tableMap = { item: 'items', strand: 'strands', technique: 'techniques', reflection: 'reflections' };
               const t = tableMap[type];
               if (!t) return null;
               const { data } = await supabase.from(t).select('id').eq('uid', uid).single();
@@ -230,12 +230,12 @@ jobs:
                 }
               }
 
-              // Threads may have an optional parent_item FK — a single item this thread belongs to.
+              // Strands may have an optional parent_item FK — a single item this strand belongs to.
               // Resolve the parent_item UID from frontmatter to the items.id row ID.
               // parent_item_id is always included in the upsert payload (null when absent) so that
               // clearing parent_item from frontmatter propagates to the DB — omitting the column
               // from the payload would leave the old value in place on conflict update.
-              if (type === 'thread') {
+              if (type === 'strand') {
                 row.parent_item_id = null;
                 if (fm.parent_item) {
                   const parentItemId = await resolveUID(fm.parent_item, 'item');
