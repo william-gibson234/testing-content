@@ -8,7 +8,7 @@ S0004,solution-solution-inclusion-exclusion-complements
 *S0006,example-strand-2-short-title
 *S0007,computation-same-parent-item
 *S0008,example-minimal-backprop
-S0009,solution-callout-card-test
+*S0009,solution-callout-card-test
 *S000A,derivation-a-short-title
 S000B,solution-admonition-testing-short-title
 *S000C,derivation-a-short-title-title
