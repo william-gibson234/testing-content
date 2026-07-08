@@ -19,7 +19,7 @@ N0000,trick-additivity-over-finitely-many-events
 *N0002,trick-a-short-title
 *N0003,recipe-a-testing-file
 *N0004,trick-a-short-title
-N0005,recipe-image-test-short-title
+*N0005,recipe-image-test-short-title
 [R]
 R0000,remark-outcome-versus-observation
 R0001,note-notation-a-and-b
