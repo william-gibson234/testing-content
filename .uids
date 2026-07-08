@@ -27,6 +27,7 @@ R0002,note-probability-function-notation
 *R0003,remark-reflection-1-short-title
 R0004,explanation-conditional-probability-meaning
 R0005,explanation-conditioning-intuition
+R0006,explanation-total-probability-meaning
 [I]
 I0000,concept-events-and-outcomes
 I0001,concept-notation-for-events
