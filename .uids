@@ -10,7 +10,7 @@ S0004,solution-solution-inclusion-exclusion-complements
 *S0008,example-minimal-backprop
 *S0009,solution-callout-card-test
 *S000A,derivation-a-short-title
-S000B,solution-admonition-testing-short-title
+*S000B,solution-admonition-testing-short-title
 *S000C,derivation-a-short-title-title
 *S000D,derivation-a-recently-allocated-file
 [N]
