@@ -16,6 +16,7 @@ S0004,solution-solution-inclusion-exclusion-complements
 S000E,derivation-generalized-rule-derivation
 S000F,derivation-multiplication-rule-derivation
 S000G,proof-total-probability-proof
+S000H,derivation-bayes-theorem-derivation
 [N]
 N0000,trick-additivity-over-finitely-many-events
 *N0001,recipe-technique-1-short-title
