@@ -20,6 +20,7 @@ S000H,derivation-bayes-theorem-derivation
 S000I,computation-at-least-2-heads
 S000J,solution-coin-and-dice-solution
 S000K,solution-draw-two-cards-solution
+S000L,solution-marble-transfer-solution
 [N]
 N0000,trick-additivity-over-finitely-many-events
 *N0001,recipe-technique-1-short-title
