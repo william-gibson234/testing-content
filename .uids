@@ -32,6 +32,7 @@ R0004,explanation-conditional-probability-meaning
 R0005,explanation-conditioning-intuition
 R0006,explanation-total-probability-meaning
 R0007,remark-total-probability-special-case
+R0008,explanation-bayes-theorem-application
 [I]
 I0000,concept-events-and-outcomes
 I0001,concept-notation-for-events
