@@ -41,6 +41,7 @@ R0007,remark-total-probability-special-case
 R0008,explanation-bayes-theorem-application
 R0009,note-temporal-order-mnemonic
 R000A,remark-any-member-independence
+R000B,remark-independence-symmetry
 [I]
 I0000,concept-events-and-outcomes
 I0001,concept-notation-for-events
