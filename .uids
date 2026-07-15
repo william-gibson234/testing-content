@@ -24,6 +24,7 @@ S000L,solution-marble-transfer-solution
 S000M,solution-conditional-subset-solution
 S000N,derivation-combinations-derivation
 S000P,derivation-permutations-derivation
+S000Q,example-binomial-expansion-example
 [N]
 N0000,trick-additivity-over-finitely-many-events
 *N0001,recipe-technique-1-short-title
