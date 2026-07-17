@@ -25,6 +25,7 @@ S000M,solution-conditional-subset-solution
 S000N,derivation-combinations-derivation
 S000P,derivation-permutations-derivation
 S000Q,example-binomial-expansion-example
+S000R,example-p[a]-via-tree-diagram
 [N]
 N0000,trick-additivity-over-finitely-many-events
 *N0001,recipe-technique-1-short-title
