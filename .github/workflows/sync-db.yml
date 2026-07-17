@@ -1,3 +1,4 @@
+# schema-version: 1
 name: Sync Content to Supabase
 
 # Triggers on every push to master.
@@ -320,4 +321,3 @@ jobs:
 
           })().catch(e => { console.error(e); process.exit(1); });
           SYNC_EOF
-

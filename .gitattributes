@@ -1,3 +1,4 @@
+# schema-version: 1
 * text=auto eol=lf
 *.avif binary
 *.bmp binary
