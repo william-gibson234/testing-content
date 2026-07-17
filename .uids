@@ -46,6 +46,7 @@ R0009,note-temporal-order-mnemonic
 R000A,remark-any-member-independence
 R000B,remark-independence-symmetry
 R000C,remark-multinomial-binomial-relation
+R000D,note-leaf-probability-notation
 [I]
 I0000,concept-events-and-outcomes
 I0001,concept-notation-for-events
