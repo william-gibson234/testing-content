@@ -29,6 +29,7 @@ S000R,example-p[a]-via-tree-diagram
 S000S,example-p[b1|n]-via-tree-diagram
 S000T,derivation-bernoulli-sequence-derivation
 S000U,derivation-three-outcome-derivation
+S000V,example-biased-coin-binomial-probabilities
 [N]
 N0000,trick-additivity-over-finitely-many-events
 *N0001,recipe-technique-1-short-title
