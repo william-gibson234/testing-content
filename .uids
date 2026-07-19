@@ -27,6 +27,7 @@ S000P,derivation-permutations-derivation
 S000Q,example-binomial-expansion-example
 S000R,example-p[a]-via-tree-diagram
 S000S,example-p[b1|n]-via-tree-diagram
+S000T,derivation-bernoulli-sequence-derivation
 [N]
 N0000,trick-additivity-over-finitely-many-events
 *N0001,recipe-technique-1-short-title
