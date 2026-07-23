@@ -1,4 +1,4 @@
-# schema-version: 1
+# schema-version: 2
 name: Sync Content to Supabase
 
 # Triggers on every push to master.
@@ -24,8 +24,16 @@ jobs:
         with:
           node-version: '22'
 
+      # The embedding model's weights are fetched once and reused across runs. Without this the
+      # runner re-downloads them on every push, which dominates the job's runtime.
+      - name: Cache embedding model
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/huggingface
+          key: hf-${{ runner.os }}-Xenova-all-MiniLM-L6-v2
+
       - name: Install dependencies
-        run: npm install @supabase/supabase-js js-yaml
+        run: npm install @supabase/supabase-js js-yaml @huggingface/transformers
 
       - name: Sync to Supabase
         env:
@@ -46,6 +54,55 @@ jobs:
               process.env.SUPABASE_URL,
               process.env.SUPABASE_SERVICE_KEY
             );
+
+            // --- Embeddings ---
+            // Every row this workflow writes carries a vector alongside its content, computed here
+            // rather than anywhere else because this is the only place rows are written at all. That
+            // is what keeps embeddings current with no staleness tracking of its own: the git diff
+            // below already identifies exactly which files changed, an edited file is re-upserted
+            // through this same loop, and its vector is rebuilt in the same statement as its content
+            // — so the two cannot drift apart. A deleted file needs nothing; its row and vector go
+            // together.
+            //
+            // The model runs locally on the runner. No AI provider, API key, or account is involved.
+            const MODEL_ID = "Xenova/all-MiniLM-L6-v2";
+            const EMBEDDING_INPUT_MAX_CHARS = 8000;
+
+            let extractorPromise = null;
+            function getExtractor() {
+              if (!extractorPromise) {
+                extractorPromise = import('@huggingface/transformers')
+                  .then(({ pipeline }) => pipeline('feature-extraction', MODEL_ID));
+              }
+              return extractorPromise;
+            }
+
+            // INVARIANT: this field order must match buildEmbeddingInput() in
+            // .claude/link-recommender-embeddings/embed.ts, which builds the query-side vector.
+            // That function is the authority; this is its hand-kept mirror, because a GitHub Actions
+            // heredoc cannot import from the plugin's TypeScript. If the two disagree, stored and
+            // query vectors stop being comparable and similarity search silently returns poor rows
+            // rather than failing.
+            function buildEmbeddingInput(longTitle, shortTitle, keywords, content) {
+              return [longTitle, shortTitle || '', (keywords || []).join(' '), content]
+                .filter(part => part && part.trim().length > 0)
+                .join('\n')
+                .slice(0, EMBEDDING_INPUT_MAX_CHARS);
+            }
+
+            // Returns the vector, or null if embedding fails. A failure downgrades that row to
+            // keyword-only discoverability instead of aborting the whole sync — the content itself
+            // still lands in the database, which matters more.
+            async function embed(text) {
+              try {
+                const extractor = await getExtractor();
+                const out = await extractor(text, { pooling: 'mean', normalize: true });
+                return Array.from(out.data);
+              } catch (e) {
+                console.warn(`[WARN] embedding failed: ${e.message}`);
+                return null;
+              }
+            }
 
             // Maps the top-level Content subfolder name to its Supabase table.
             const FOLDER_TO_TABLE = {
@@ -247,6 +304,12 @@ jobs:
                   }
                 }
               }
+
+              // Computed into the same row object as the content field, so one upsert writes both
+              // and no code path can update the text without updating the vector describing it.
+              row.embedding = await embed(
+                buildEmbeddingInput(long_title, short_title, keywords, body)
+              );
 
               const { data, error } = await supabase
                 .from(table)
