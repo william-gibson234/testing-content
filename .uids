@@ -53,6 +53,7 @@ R000B,remark-independence-symmetry
 R000C,remark-multinomial-binomial-relation
 R000D,note-leaf-probability-notation
 R000E,note-cdf-notation-and-name
+R000F,note-variable-means-numbers
 [I]
 I0000,concept-events-and-outcomes
 I0001,concept-notation-for-events
