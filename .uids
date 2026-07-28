@@ -151,3 +151,4 @@ I002H,concept-expected-value
 I002I,concept-variance
 I002J,formula-expected-value-pdf-formula
 I002K,formula-expected-value-pmf-formula
+I002L,formula-variance-pdf-formula
