@@ -55,6 +55,7 @@ R000C,remark-multinomial-binomial-relation
 R000D,note-leaf-probability-notation
 R000E,note-cdf-notation-and-name
 R000F,note-variable-means-numbers
+R000G,explanation-binomial-pmf-interpretation
 [I]
 I0000,concept-events-and-outcomes
 I0001,concept-notation-for-events
