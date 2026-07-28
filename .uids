@@ -57,6 +57,7 @@ R000E,note-cdf-notation-and-name
 R000F,note-variable-means-numbers
 R000G,explanation-binomial-pmf-interpretation
 R000H,explanation-geometric-pmf-interpretation
+R000I,explanation-pascal-pmf-interpretation
 [I]
 I0000,concept-events-and-outcomes
 I0001,concept-notation-for-events
