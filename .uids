@@ -59,6 +59,7 @@ R000G,explanation-binomial-pmf-interpretation
 R000H,explanation-geometric-pmf-interpretation
 R000I,explanation-pascal-pmf-interpretation
 R000J,note-infinite-sample-space
+R000K,note-naming-of-expected-value
 [I]
 I0000,concept-events-and-outcomes
 I0001,concept-notation-for-events
