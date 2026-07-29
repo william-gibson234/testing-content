@@ -172,3 +172,4 @@ I002X,formula-falling-factorial-form
 I002Y,formula-bernoulli-expectation
 I002Z,formula-bernoulli-variance
 I0030,formula-binomial-expectation
+I0031,formula-binomial-variance
