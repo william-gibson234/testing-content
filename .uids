@@ -182,3 +182,4 @@ I0037,formula-poisson-variance
 I0038,definition-central-moment
 I0039,definition-derived-random-variable
 I003A,definition-nth-moment
+I003B,exercisestatement-verify-linearity-formulas
