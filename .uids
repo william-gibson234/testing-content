@@ -33,6 +33,7 @@ S000V,example-biased-coin-binomial-probabilities
 S000W,computation-pmf-from-cdf-graph
 S000X,derivation-poisson-limit-derivation
 S000Y,example-poisson-limit-example
+S000Z,proof-proof-derived-expectation
 [N]
 N0000,trick-additivity-over-finitely-many-events
 *N0001,recipe-technique-1-short-title
