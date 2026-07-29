@@ -184,3 +184,4 @@ I0039,definition-derived-random-variable
 I003A,definition-nth-moment
 I003B,exercisestatement-verify-linearity-formulas
 I003C,fact-moments-determine-distribution
+I003D,fact-pdf-and-cdf-relation
