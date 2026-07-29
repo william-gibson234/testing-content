@@ -61,6 +61,7 @@ R000I,explanation-pascal-pmf-interpretation
 R000J,note-infinite-sample-space
 R000K,note-naming-of-expected-value
 R000L,commentary-poisson-approx-conditions
+R000M,explanation-binomial-rare-events
 [I]
 I0000,concept-events-and-outcomes
 I0001,concept-notation-for-events
