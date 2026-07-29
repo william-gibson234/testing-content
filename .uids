@@ -68,6 +68,7 @@ R000L,commentary-poisson-approx-conditions
 R000M,explanation-binomial-rare-events
 R000N,perspective-poisson-vs-binomial
 R000P,explanation-expectation-notation
+R000Q,perspective-moments-as-series
 [I]
 I0000,concept-events-and-outcomes
 I0001,concept-notation-for-events
