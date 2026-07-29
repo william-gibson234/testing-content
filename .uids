@@ -71,6 +71,7 @@ R000P,explanation-expectation-notation
 R000Q,perspective-moments-as-series
 R000R,remark-pdf-of-derived-variable
 R000S,remark-variance-not-linear
+R000T,remark-e[g(x)]-vs-g(e[x])
 [I]
 I0000,concept-events-and-outcomes
 I0001,concept-notation-for-events
